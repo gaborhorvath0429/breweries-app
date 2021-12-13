@@ -18,24 +18,13 @@
 
         <tbody>
           <tr *ngFor="let brewery of breweries$ | async; index as i">
-            <td>{{i + 1}}</td>
-            <td>{{brewery.name}}</td>
+            <td>{{i + (page - 1) * pageSize + 1}}</td>
+            <td><a class="nav-link" [routerLink]="['/brewery', brewery.id]">{{brewery.name}}</a></td>
             <td>{{brewery.city}}</td>
           </tr>
         </tbody>
 
       </table>
-
-
-      <!-- <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshBreweries()">
-        </ngb-pagination>
-      
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshBreweries()">
-          <option [ngValue]="10">10 items per page</option>
-        </select>
-      </div> -->
-
 
       <div class="d-flex justify-content-between">
         <button class="btn btn-dark" (click)="previousPage()">Back</button><button class="btn btn-dark" (click)="nextPage()">Next</button>

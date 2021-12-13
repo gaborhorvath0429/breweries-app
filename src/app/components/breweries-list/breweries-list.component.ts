@@ -15,36 +15,31 @@ export class BreweriesListComponent implements OnInit {
 
   breweries$: Observable<Brewery[]>;
 
+  page = 1;
+  pageSize = 10;
+
   constructor(
-    private breweryService: BreweryService,
     private store: Store<any>
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getItems());
+    this.getBreweries();
     this.breweries$ = this.store.pipe(select(selectItems));
   }
 
-  // page = 1;
-  // pageSize = 10;
-  // collectionSize = this.breweries$.
-  // breweries: Brewery[];
-
-
-
-
-  // refreshBreweries() {
-  //    this.breweries = this.breweries$
-  //     .map((brewery, i) => ({id: i + 1, ...brewery}))
-  //     .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  // }
+  getBreweries(): void {
+    this.store.dispatch(getItems({ page: this.page }));
+  }
 
   previousPage() {
-
+    if (this.page !== 1) {
+      this.page--;
+      this.getBreweries();
+    }
   }
 
   nextPage() {
-    
+    this.page++;
+    this.getBreweries();
   }
-
 }

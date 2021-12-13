@@ -13,12 +13,16 @@ export class BreweryService {
 
   constructor(private _http: HttpClient) { }
 
-  getBreweries(): Observable<BreweryHttp> {
-    return this._http.get<BreweryHttp>(`${this.breweriesUrl}?per_page=${this.perPage}`);
+  getBreweries(page: number): Observable<BreweryHttp> {
+    return this._http.get<BreweryHttp>(`${this.breweriesUrl}?per_page=${this.perPage}&page=${page}`);
   }
 
   getBrewery(id: string): Observable<any> {
     return this._http.get<BreweryHttp>(`${this.breweriesUrl}/${id}`);
+  }
+
+  getBreweriesByName(name: string): Observable<BreweryHttp> {
+    return this._http.get<BreweryHttp>(`${this.breweriesUrl}/autocomplete?query=${name}`);
   }
 }
 

@@ -14,7 +14,7 @@ import { BreweriesListComponent } from './components/breweries-list/breweries-li
 import { BreweryDetailsComponent } from './components/brewery-details/brewery-details.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/main/main.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { MainComponent } from './components/main/main.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
