@@ -9,15 +9,16 @@ import { BreweryHttp } from '../models/http-models/brewery-http.interface';
 })
 export class BreweryService {
   breweriesUrl = `${environment.apiUrl}`
+  perPage = 10;
 
   constructor(private _http: HttpClient) { }
 
   getBreweries(): Observable<BreweryHttp> {
-    return this._http.get<BreweryHttp>(this.breweriesUrl);
+    return this._http.get<BreweryHttp>(`${this.breweriesUrl}?per_page=${this.perPage}`);
   }
 
-  getBrewery(_id: string): Observable<any> {
-    return this._http.get<BreweryHttp>(`${this.breweriesUrl}/${_id}`);
+  getBrewery(id: string): Observable<any> {
+    return this._http.get<BreweryHttp>(`${this.breweriesUrl}/${id}`);
   }
 }
 

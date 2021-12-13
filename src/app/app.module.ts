@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BreweryReducer } from './store/brewery/breweryReducers';
 import { BreweryEffect } from './store/brewery/breweryEffects';
 
-import { StoreModule } from  '@ngrx/store'
-import { EffectsModule } from  '@ngrx/effects'
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +28,7 @@ import { MainComponent } from './components/main/main.component';
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({ breweries: BreweryReducer}),
+    StoreModule.forRoot({ breweries: BreweryReducer }),
     EffectsModule.forRoot([BreweryEffect]),
   ],
   providers: [],

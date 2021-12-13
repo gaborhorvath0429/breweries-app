@@ -1,15 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
-import { Action } from "rxjs/internal/scheduler/Action";
 import { Brewery } from "src/app/models/brewery.model";
-import { errorItem, loadItems } from "./breweryActions";
+import { errorItem, loadItems, loadSelectedItem } from "./breweryActions";
 
 
 export interface State {
-    breweries: { items: Brewery[], error: string };
+
+    breweries: { items: Brewery[], selected?: null, error: string };
 }
 
 export const initialState: State = {
-    breweries: { items: [], error: '' }
+    breweries: { items: [], selected: null, error: '' }
 }
 
 
@@ -18,6 +18,10 @@ export const BreweryReducer = createReducer(
     on(loadItems, (state, action) => ({
         ...state,
         items: action.items
+    })),
+    on(loadSelectedItem, (state, action) => ({
+        ...state,
+        selected: action.selected
     })),
     on(errorItem, (state, action) => ({
         ...state,
@@ -28,4 +32,5 @@ export const BreweryReducer = createReducer(
 
 
 export const selectItems = (state: State) => state.breweries.items;
+export const selectOneItem = (state: State) => Object.assign({}, state.breweries.selected);            // lemásolja a selectedet és a másolát fogja vissza adni ?? kell ez?
 export const selectError = (state: State) => state.breweries.error;
